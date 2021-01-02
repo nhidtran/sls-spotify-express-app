@@ -1,7 +1,8 @@
 org: nhidtran
-app: sls-spotify-authentication
+app: sls-spotify-api
 component: express
 name: express-starter
+stage: dev
 
 inputs:
   src: ./
