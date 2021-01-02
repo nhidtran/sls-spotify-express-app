@@ -1,0 +1,7 @@
+org: nhidtran
+app: sls-spotify-authentication
+component: express
+name: express-starter
+
+inputs:
+  src: ./
