@@ -23,32 +23,39 @@ if (process.env.NODE_ENV == "dev") {
   });
 }
 
+// middleware to check if access token has expired
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
-  if (token === null) return res.status(400);
+  if (token === null) return res.status(400); // res.redirect to /spotify
 
-  jwt.verify(
-    token,
-    // spotifyAPI.getAccessToken().access_token,
-    // TODO: this is where I would pull access token from dynamo and check if it has expired
-    async (err, user) => {
-      if (err) return res.sendStatus(403);
-      if (spotifyAPI.isTokenExpired()) {
-        await refreshCredentialsGrant(spotifyAPI.getRefreshToken())
-          .then((data) => {
-            spotifyAPI.setAccessToken(data);
-          })
-          .catch((err) => {
-            return res
-              .status("500")
-              .send(`Error retrieving refresh token: ${err.message}`);
-          });
-      }
-      req.user = user;
-      next();
-    }
-  );
+  // retrieve persisted access token from dynamodb
+  jwt.verify(token, dynamo.getAccessToken().access_token, async (err, user) => {
+    if (error) return res.sendStatus(403);
+    // if isExpired, getRefreshToken
+    // await refresehCredentialsGrant(token retrieved from dynamo)
+  });
+  // jwt.verify(
+  //   token,
+  //   // spotifyAPI.getAccessToken().access_token,
+  //   // TODO: this is where I would pull access token from dynamo and check if it has expired
+  //   async (err, user) => {
+  //     if (err) return res.sendStatus(403);
+  //     if (spotifyAPI.isTokenExpired()) {
+  //       await refreshCredentialsGrant(spotifyAPI.getRefreshToken())
+  //         .then((data) => {
+  //           spotifyAPI.setAccessToken(data);
+  //         })
+  //         .catch((err) => {
+  //           return res
+  //             .status("500")
+  //             .send(`Error retrieving refresh token: ${err.message}`);
+  //         });
+  //     }
+  //     req.user = user;
+  //     next();
+  //   }
+  // );
 }
 
 // Enable CORS for all methods
@@ -90,7 +97,9 @@ app.get("/spotify/callback", async (req, res) => {
   // returns accses token and refresh token
   try {
     await authorizationCodeGrant({ code }).then((data) => {
+      console.log("%cdata-----", "color:pink", data);
       console.log("/spotify/callback received access_token", data.access_token);
+      // data: {access_token, token_type, expires_in, refresh_token, scope }
       // spotifyAPI.setAccessToken(data); TODO - persist in dynamodb (userId, access_token, expires_at)
       const jwtToken = jwt.sign(data, data.access_token);
       res.setHeader("Authorization", "Bearer" + jwtToken);

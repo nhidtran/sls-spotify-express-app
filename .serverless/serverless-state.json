@@ -182,7 +182,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/spotifyapi/dev/1609689546930-2021-01-03T15:59:06.930Z/spotifyapi.zip"
+                "S3Key": "serverless/spotifyapi/dev/1609724785112-2021-01-04T01:46:25.112Z/spotifyapi.zip"
               },
               "Handler": "lambda.handler",
               "Runtime": "nodejs12.x",
@@ -207,7 +207,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/spotifyapi/dev/1609689546930-2021-01-03T15:59:06.930Z/spotifyapi.zip"
+                "S3Key": "serverless/spotifyapi/dev/1609724785112-2021-01-04T01:46:25.112Z/spotifyapi.zip"
               },
               "Handler": "lambda.hello",
               "Runtime": "nodejs12.x",
@@ -225,24 +225,24 @@
               "HelloLogGroup"
             ]
           },
-          "SpotifyLambdaVersion9BaBiavIcydzBpXvzmMdellc0wIqWiEkmmyfMHlsRY": {
+          "SpotifyLambdaVersionC4njzQykEDnE1b1oHf5wAXLIRr3nIEnA1WHp6KVTkA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SpotifyLambdaFunction"
               },
-              "CodeSha256": "+17SM/ao1KT0JPyjVuYiTOLkSi/gfh1jXT2uGDbsMow="
+              "CodeSha256": "7ZWnxZr+CjIu+LT2vb3jVx5NHvVhBYmUlbehJmOHPPQ="
             }
           },
-          "HelloLambdaVersionzAUH4ZpXz5lAfke5LJx5yrvr33n55W6iGjsdFlTUiLI": {
+          "HelloLambdaVersionDhMdmfXGD5ais0Qti3smDDXG3ilJCitJxNw26FFSw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "+17SM/ao1KT0JPyjVuYiTOLkSi/gfh1jXT2uGDbsMow="
+              "CodeSha256": "7ZWnxZr+CjIu+LT2vb3jVx5NHvVhBYmUlbehJmOHPPQ="
             }
           },
           "ApiGatewayRestApi": {
@@ -385,7 +385,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1609689542994": {
+          "ApiGatewayDeployment1609724780215": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -482,13 +482,13 @@
           "SpotifyLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SpotifyLambdaVersion9BaBiavIcydzBpXvzmMdellc0wIqWiEkmmyfMHlsRY"
+              "Ref": "SpotifyLambdaVersionC4njzQykEDnE1b1oHf5wAXLIRr3nIEnA1WHp6KVTkA"
             }
           },
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersionzAUH4ZpXz5lAfke5LJx5yrvr33n55W6iGjsdFlTUiLI"
+              "Ref": "HelloLambdaVersionDhMdmfXGD5ais0Qti3smDDXG3ilJCitJxNw26FFSw"
             }
           },
           "ServiceEndpoint": {
@@ -619,7 +619,7 @@
         "timeout": 10,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "SpotifyLambdaVersion9BaBiavIcydzBpXvzmMdellc0wIqWiEkmmyfMHlsRY"
+        "versionLogicalId": "SpotifyLambdaVersionC4njzQykEDnE1b1oHf5wAXLIRr3nIEnA1WHp6KVTkA"
       },
       "hello": {
         "handler": "lambda.hello",
@@ -639,7 +639,7 @@
         "timeout": 10,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersionzAUH4ZpXz5lAfke5LJx5yrvr33n55W6iGjsdFlTUiLI"
+        "versionLogicalId": "HelloLambdaVersionDhMdmfXGD5ais0Qti3smDDXG3ilJCitJxNw26FFSw"
       }
     },
     "configValidationMode": "warn",
@@ -660,7 +660,7 @@
     "artifact": "/Users/nhitran/workspace/sls-spotify-api/.serverless/spotifyapi.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/spotifyapi/dev/1609689546930-2021-01-03T15:59:06.930Z",
+    "artifactDirectoryName": "serverless/spotifyapi/dev/1609724785112-2021-01-04T01:46:25.112Z",
     "artifact": "spotifyapi.zip"
   }
 }

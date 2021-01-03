@@ -1,0 +1,33 @@
+version: 0.1
+phases:
+  install:
+    commands:
+      # install node 12
+      - echo Installing Node 12 ...
+      - curl -sL https://deb.nodesource.com/setup_12.x | bash -
+      - apt install -y nodejs
+      - node -v
+      # install npm
+      - echo Installing npm ...
+      - npm i npm@latest -g
+      - npm -v
+      # install serverless
+      - npm i -g serverless
+  pre_build:
+    commands:
+      - echo Installing dependencies....
+      - npm i
+      - echo Running tests...
+      - npm run test
+  build:
+    commands:
+      # deploying resources...
+      - serverless deploy
+  post_build:
+    commands:
+      - echo Deploy complete....
+artifacts:
+  files:
+    - "**/*"
+  discard-path: no
+  base-directory: .serverless

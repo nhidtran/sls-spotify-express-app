@@ -14,7 +14,7 @@ module.exports.hello = function (event, context, callback) {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Credentials": true,
     },
-    body: JSON.stringify({ message: "Hello World" }),
+    body: JSON.stringify({ message: "Hello World!" }),
   };
   callback(null, response);
 };
