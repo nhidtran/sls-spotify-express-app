@@ -1,8 +1,32 @@
-org: nhidtran
-app: sls-spotify-api
-component: express
-name: spotify-lambda
-stage: dev
+# org: nhidtran
+# app: sls-spotify-api
+# component: express
+# name: spotify-lambda
+# stage: dev
+service: spotifyapi
 
+provider:
+  name: aws
+  runtime: nodejs12.x
+  memorySize: 512
+  timeout: 10
+
+functions:
+  spotify:
+    handler: lambda.handler
+    events:
+      - http: GET spotify
+        path: spotify
+        method: get
+        cors:
+          headers: "*"
+  hello:
+    handler: lambda.hello
+    events:
+      - http: GET hello # this is the API gateway event
+        path: hello
+        method: get
+        cors:
+          header: "*"
 inputs:
   src: ./

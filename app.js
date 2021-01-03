@@ -22,6 +22,35 @@ if (process.env.NODE_ENV == "dev") {
     console.log("App started on port⛈: ", PORT);
   });
 }
+
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token === null) return res.status(400);
+
+  jwt.verify(
+    token,
+    // spotifyAPI.getAccessToken().access_token,
+    // TODO: this is where I would pull access token from dynamo and check if it has expired
+    async (err, user) => {
+      if (err) return res.sendStatus(403);
+      if (spotifyAPI.isTokenExpired()) {
+        await refreshCredentialsGrant(spotifyAPI.getRefreshToken())
+          .then((data) => {
+            spotifyAPI.setAccessToken(data);
+          })
+          .catch((err) => {
+            return res
+              .status("500")
+              .send(`Error retrieving refresh token: ${err.message}`);
+          });
+      }
+      req.user = user;
+      next();
+    }
+  );
+}
+
 // Enable CORS for all methods
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
