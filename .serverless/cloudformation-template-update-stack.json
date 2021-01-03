@@ -167,7 +167,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/spotifyapi/dev/1609686279028-2021-01-03T15:04:39.028Z/spotifyapi.zip"
+          "S3Key": "serverless/spotifyapi/dev/1609689546930-2021-01-03T15:59:06.930Z/spotifyapi.zip"
         },
         "Handler": "lambda.handler",
         "Runtime": "nodejs12.x",
@@ -192,7 +192,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/spotifyapi/dev/1609686279028-2021-01-03T15:04:39.028Z/spotifyapi.zip"
+          "S3Key": "serverless/spotifyapi/dev/1609689546930-2021-01-03T15:59:06.930Z/spotifyapi.zip"
         },
         "Handler": "lambda.hello",
         "Runtime": "nodejs12.x",
@@ -210,24 +210,24 @@
         "HelloLogGroup"
       ]
     },
-    "SpotifyLambdaVersionw1NROUqNmmcd53vUIz5CzuwxFYsIogeCdbP5fImTsE": {
+    "SpotifyLambdaVersion9BaBiavIcydzBpXvzmMdellc0wIqWiEkmmyfMHlsRY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SpotifyLambdaFunction"
         },
-        "CodeSha256": "psdSmCkRv22Hk7C3WdG5XlMtqgTif5b9V2BmlcaVlFQ="
+        "CodeSha256": "+17SM/ao1KT0JPyjVuYiTOLkSi/gfh1jXT2uGDbsMow="
       }
     },
-    "HelloLambdaVersionUj8PL8zgnOXP8fzGud1e9ODn7bW7Gan3A7SIldy04o": {
+    "HelloLambdaVersionzAUH4ZpXz5lAfke5LJx5yrvr33n55W6iGjsdFlTUiLI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "psdSmCkRv22Hk7C3WdG5XlMtqgTif5b9V2BmlcaVlFQ="
+        "CodeSha256": "+17SM/ao1KT0JPyjVuYiTOLkSi/gfh1jXT2uGDbsMow="
       }
     },
     "ApiGatewayRestApi": {
@@ -257,6 +257,18 @@
         }
       }
     },
+    "ApiGatewayResourceSpotifyProxyVar": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceSpotify"
+        },
+        "PathPart": "{proxy+}",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
     "ApiGatewayResourceHello": {
       "Type": "AWS::ApiGateway::Resource",
       "Properties": {
@@ -272,13 +284,13 @@
         }
       }
     },
-    "ApiGatewayMethodSpotifyGet": {
+    "ApiGatewayMethodSpotifyProxyVarAny": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
-        "HttpMethod": "GET",
+        "HttpMethod": "ANY",
         "RequestParameters": {},
         "ResourceId": {
-          "Ref": "ApiGatewayResourceSpotify"
+          "Ref": "ApiGatewayResourceSpotifyProxyVar"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -358,7 +370,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1609686274366": {
+    "ApiGatewayDeployment1609689542994": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -367,7 +379,7 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodSpotifyGet",
+        "ApiGatewayMethodSpotifyProxyVarAny",
         "ApiGatewayMethodHelloGet"
       ]
     },
@@ -455,13 +467,13 @@
     "SpotifyLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SpotifyLambdaVersionw1NROUqNmmcd53vUIz5CzuwxFYsIogeCdbP5fImTsE"
+        "Ref": "SpotifyLambdaVersion9BaBiavIcydzBpXvzmMdellc0wIqWiEkmmyfMHlsRY"
       }
     },
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionUj8PL8zgnOXP8fzGud1e9ODn7bW7Gan3A7SIldy04o"
+        "Ref": "HelloLambdaVersionzAUH4ZpXz5lAfke5LJx5yrvr33n55W6iGjsdFlTUiLI"
       }
     },
     "ServiceEndpoint": {

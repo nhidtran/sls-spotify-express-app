@@ -1,8 +1,3 @@
-# org: nhidtran
-# app: sls-spotify-api
-# component: express
-# name: spotify-lambda
-# stage: dev
 service: spotifyapi
 
 provider:
@@ -15,9 +10,8 @@ functions:
   spotify:
     handler: lambda.handler
     events:
-      - http: GET spotify
-        path: spotify
-        method: get
+      - http: ANY /spotify/{proxy+}
+        method: any
         cors:
           headers: "*"
   hello:
@@ -28,5 +22,3 @@ functions:
         method: get
         cors:
           header: "*"
-inputs:
-  src: ./
