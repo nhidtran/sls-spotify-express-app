@@ -1,7 +1,7 @@
 org: nhidtran
 app: sls-spotify-api
 component: express
-name: express-starter
+name: spotify-lambda
 stage: dev
 
 inputs:

@@ -17,6 +17,11 @@ app.use(bodyParser.json());
 
 const { CLIENT_ID, PORT } = process.env;
 
+if (process.env.NODE_ENV == "dev") {
+  app.listen(PORT, function () {
+    console.log("App started on port⛈: ", PORT);
+  });
+}
 // Enable CORS for all methods
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -56,7 +61,7 @@ app.get("/spotify/callback", async (req, res) => {
   // returns accses token and refresh token
   try {
     await authorizationCodeGrant({ code }).then((data) => {
-      console.log("/spotify/callback received access_token", access_token);
+      console.log("/spotify/callback received access_token", data.access_token);
       // spotifyAPI.setAccessToken(data); TODO - persist in dynamodb (userId, access_token, expires_at)
       const jwtToken = jwt.sign(data, data.access_token);
       res.setHeader("Authorization", "Bearer" + jwtToken);
@@ -70,10 +75,6 @@ app.get("/spotify/callback", async (req, res) => {
         `Error retrieving access_token during authorizaiton grant: ${err.message}`
       );
   }
-});
-
-app.listen(PORT, function () {
-  console.log("App started on port: ", PORT);
 });
 
 module.exports = app;
