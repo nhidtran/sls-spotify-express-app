@@ -24,17 +24,3 @@ phases:
       # deploying resources...
       - echo serverless deploy....
       - serverless deploy --stage dev
-      - echo Creating directory for deployment packages...
-      - mkdir artifacts
-      - echo Creating dev deployment package...
-      - mkdir artifacts/dev
-      - echo Packaging build artifacts...
-      - cd ./artifacts/dev
-      - ls
-      - cd ..
-      - serverless package --package artifacts/dev --stage dev
-artifacts:
-  files:
-    - artifacts/**/*
-    - serverless.yml
-    - deploy.sh
