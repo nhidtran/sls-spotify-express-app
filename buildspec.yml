@@ -28,12 +28,10 @@ phases:
       - mkdir artifacts
       - echo Creating dev deployment package...
       - mkdir artifacts/dev
+      - echo Packaging build artifacts...
       - serverless package --package artifacts/dev --stage dev
-  post_build:
-    commands:
-      - serverless deploy --stage dev --package $CODEBUILD_SRC_DIR/artifacts/dev -v
 artifacts:
   files:
     - artifacts/**/*
     - serverless.yml
-    # - deploy.sh
+    - deploy.sh
