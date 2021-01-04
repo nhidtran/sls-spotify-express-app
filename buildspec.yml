@@ -29,7 +29,7 @@ phases:
       - echo Creating dev deployment package...
       - mkdir artifacts/dev
       - echo Packaging build artifacts...
-      - cd artifacts/dev
+      - cd ./artifacts/dev
       - ls
       - cd ..
       - serverless package --package artifacts/dev --stage dev
