@@ -25,9 +25,9 @@ phases:
       - sls deploy
   post_build:
     commands:
-      - echo Deploy complete....
+      - serverless package --s3-bucket spotify-api-deployment-bucket --output-template-file packaged.yaml
 artifacts:
   files:
-    - "**/*"
-  discard-path: no
+    - packaged.yaml
+  discard-paths: yes
   base-directory: .serverless
