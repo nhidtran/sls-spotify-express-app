@@ -9,6 +9,7 @@ var jwt = require("jsonwebtoken");
 
 const { API_GATEWAY_ENDPOINT, FRONT_END_URI } = require("./src/api-config");
 const AuthorizedRequest = require("./src/authorizedRequest");
+
 const { authorizationCodeGrant } = require("./src/authorizationCodeGrant");
 
 const app = express();
@@ -86,9 +87,7 @@ app.get("/spotify", (req, res) => {
         response_type: "code",
         client_id: CLIENT_ID,
         scope: "user-read-private user-read-email",
-        // redirect_uri: API_GATEWAY_ENDPOINT + "/spotify/callback",
-        redirect_uri:
-          "https://1umrmg6hp5.execute-api.us-east-1.amazonaws.com/dev/spotify/callback",
+        redirect_uri: API_GATEWAY_ENDPOINT + "/spotify/callback",
       })
       .build()
       .getURI()
@@ -97,6 +96,7 @@ app.get("/spotify", (req, res) => {
 
 app.get("/spotify/callback", async (req, res) => {
   const code = req.query.code || null;
+  console.log("%ccode", "color:pink", code);
   // returns accses token and refresh token
   try {
     await authorizationCodeGrant({ code }).then((data) => {
