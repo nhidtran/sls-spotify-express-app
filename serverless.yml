@@ -10,7 +10,7 @@ functions:
   spotify:
     handler: lambda.handler
     events:
-      - http: GET spotify
+      - http: ANY spotify/{proxy+}
         cors:
           headers: "*"
   hello:

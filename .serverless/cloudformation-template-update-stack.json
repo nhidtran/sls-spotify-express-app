@@ -173,7 +173,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/spotifyapi/dev/1609732584683-2021-01-04T03:56:24.683Z/spotifyapi.zip"
+          "S3Key": "serverless/spotifyapi/dev/1609733333385-2021-01-04T04:08:53.385Z/spotifyapi.zip"
         },
         "Handler": "lambda.handler",
         "Runtime": "nodejs12.x",
@@ -198,7 +198,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/spotifyapi/dev/1609732584683-2021-01-04T03:56:24.683Z/spotifyapi.zip"
+          "S3Key": "serverless/spotifyapi/dev/1609733333385-2021-01-04T04:08:53.385Z/spotifyapi.zip"
         },
         "Handler": "lambda.hello",
         "Runtime": "nodejs12.x",
@@ -223,7 +223,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/spotifyapi/dev/1609732584683-2021-01-04T03:56:24.683Z/spotifyapi.zip"
+          "S3Key": "serverless/spotifyapi/dev/1609733333385-2021-01-04T04:08:53.385Z/spotifyapi.zip"
         },
         "Handler": "lambda.hello",
         "Runtime": "nodejs12.x",
@@ -241,34 +241,34 @@
         "GoodbyeLogGroup"
       ]
     },
-    "SpotifyLambdaVersionc8kwqftA7LkntXHMen2UUUQbB28NmfUx1HZ5aARVD3E": {
+    "SpotifyLambdaVersionsiwigsmUh6FvGbKUzncm5pTyy6By7QY88gjoS7L8bd8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SpotifyLambdaFunction"
         },
-        "CodeSha256": "2lFIxJ7Gt4l2ujAU0bP8d85X+Ib7Ul0odWiFTEeedJA="
+        "CodeSha256": "TjBArzEvIKVnDyRZb6hYgQWb4VWcgJxwlVultlLoAis="
       }
     },
-    "HelloLambdaVersionZna58gPLX9u7FrnAMfaj7RCRUSBjXyBFd1bWoAJ4": {
+    "HelloLambdaVersionEToqZEVH4Mw2lKpoN7WGqWrHaMYAPeabSbO8uxHI2E": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "2lFIxJ7Gt4l2ujAU0bP8d85X+Ib7Ul0odWiFTEeedJA="
+        "CodeSha256": "TjBArzEvIKVnDyRZb6hYgQWb4VWcgJxwlVultlLoAis="
       }
     },
-    "GoodbyeLambdaVersionQQeWLgkRl0Xpg7w2MenHrkmIif13fBsoeTYfZYfA8": {
+    "GoodbyeLambdaVersionwaq2n7tB50LAO2qraHnLFP52oO2z22dZatSHsmQL8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GoodbyeLambdaFunction"
         },
-        "CodeSha256": "2lFIxJ7Gt4l2ujAU0bP8d85X+Ib7Ul0odWiFTEeedJA="
+        "CodeSha256": "TjBArzEvIKVnDyRZb6hYgQWb4VWcgJxwlVultlLoAis="
       }
     },
     "ApiGatewayRestApi": {
@@ -469,7 +469,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1609732579630": {
+    "ApiGatewayDeployment1609733329006": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -604,19 +604,19 @@
     "SpotifyLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SpotifyLambdaVersionc8kwqftA7LkntXHMen2UUUQbB28NmfUx1HZ5aARVD3E"
+        "Ref": "SpotifyLambdaVersionsiwigsmUh6FvGbKUzncm5pTyy6By7QY88gjoS7L8bd8"
       }
     },
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionZna58gPLX9u7FrnAMfaj7RCRUSBjXyBFd1bWoAJ4"
+        "Ref": "HelloLambdaVersionEToqZEVH4Mw2lKpoN7WGqWrHaMYAPeabSbO8uxHI2E"
       }
     },
     "GoodbyeLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GoodbyeLambdaVersionQQeWLgkRl0Xpg7w2MenHrkmIif13fBsoeTYfZYfA8"
+        "Ref": "GoodbyeLambdaVersionwaq2n7tB50LAO2qraHnLFP52oO2z22dZatSHsmQL8"
       }
     },
     "ServiceEndpoint": {

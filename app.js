@@ -85,9 +85,8 @@ app.get("/spotify", (req, res) => {
       .withPath("/authorize")
       .withQueryParams({
         response_type: "code",
-        client_id: CLIENT_ID,
+        client_id: "0c1f37f1f5ca450b98319b458a8e4e24",
         scope: "user-read-private user-read-email",
-        // redirect_uri: API_GATEWAY_ENDPOINT + "/spotify/callback",
         redirect_uri:
           "https://1umrmg6hp5.execute-api.us-east-1.amazonaws.com/dev/spotify/callback",
       })
