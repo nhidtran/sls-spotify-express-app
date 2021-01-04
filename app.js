@@ -87,8 +87,6 @@ app.get("/spotify", (req, res) => {
         client_id: CLIENT_ID,
         scope: "user-read-private user-read-email",
         redirect_uri: API_GATEWAY_ENDPOINT + "/spotify/callback",
-        // redirect_uri:
-        //   "https://1umrmg6hp5.execute-api.us-east-1.amazonaws.com/dev/spotify/callback",
       })
       .build()
       .getURI()
