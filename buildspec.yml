@@ -22,4 +22,4 @@ phases:
   build:
     commands:
       # deploying resources...
-      - sls deploy --stage dev
+      - serverless deploy
