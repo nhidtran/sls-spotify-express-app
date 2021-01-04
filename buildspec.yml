@@ -23,11 +23,3 @@ phases:
     commands:
       # deploying resources...
       - sls deploy
-  post_build:
-    commands:
-      - serverless package --s3-bucket spotify-api-deployment-bucket --output-template-file packaged.yaml
-artifacts:
-  files:
-    - packaged.yaml
-  discard-paths: yes
-  base-directory: .serverless
