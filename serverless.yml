@@ -15,15 +15,6 @@ functions:
         method: any
         cors:
           headers: "*"
-  callback:
-  handler: lambda.handler
-  events:
-    - http: GET spotify
-      path: spotify/callback
-      # - http: ANY /spotify
-      method: any
-      cors:
-        headers: "*"
   hello:
     handler: lambda.hello
     events:
