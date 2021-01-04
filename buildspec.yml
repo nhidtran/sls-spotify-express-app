@@ -29,7 +29,7 @@ phases:
       - echo Creating dev deployment package...
       - mkdir artifacts/dev
       - serverless package --package artifacts/dev --stage dev
-  post-build:
+  post_build:
     commands:
       - serverless deploy --stage dev --package $CODEBUILD_SRC_DIR/artifacts/dev -v
 artifacts:
