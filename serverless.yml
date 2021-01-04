@@ -23,3 +23,12 @@ functions:
         method: get
         cors:
           header: "*"
+  goodbye:
+    handler: lambda.hello
+     events:
+      - http: GET goodbye # this is the API gateway event
+        path: goodbye
+        method: get
+        cors:
+          header: "*"
+
