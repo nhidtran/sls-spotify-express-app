@@ -75,7 +75,12 @@ app.use(function (req, res, next) {
   next();
 });
 
-console.log("%cenv API GATEWAT", "color:pink", process.env.API_GATEWAY_DEV);
+console.log(
+  "%cenv API GATEWAT",
+  "color:pink",
+  process.env.API_GATEWAY_DEV,
+  API_GATEWAY_ENDPOINT
+);
 app.get("/spotify", (req, res) => {
   console.log("/spotify retrieving access token");
   // service /authorize endpoint, call starts the process of authenticating to user
@@ -85,10 +90,10 @@ app.get("/spotify", (req, res) => {
       .withPath("/authorize")
       .withQueryParams({
         response_type: "code",
-        client_id: "0c1f37f1f5ca450b98319b458a8e4e24",
+        client_id: CLIENT_ID,
         scope: "user-read-private user-read-email",
-        redirect_uri:
-          "https://1umrmg6hp5.execute-api.us-east-1.amazonaws.com/dev/spotify/callback",
+        redirect_uri: API_GATEWAY_ENDPOINT + "/spotify/callback",
+        // "https://1umrmg6hp5.execute-api.us-east-1.amazonaws.com/dev/spotify/callback",
       })
       .build()
       .getURI()

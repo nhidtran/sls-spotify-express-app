@@ -98,12 +98,6 @@
               "LogGroupName": "/aws/lambda/spotifyapi-dev-hello"
             }
           },
-          "GoodbyeLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/spotifyapi-dev-goodbye"
-            }
-          },
           "IamRoleLambdaExecution": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -188,7 +182,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/spotifyapi/dev/1609733333385-2021-01-04T04:08:53.385Z/spotifyapi.zip"
+                "S3Key": "serverless/spotifyapi/dev/1609768821310-2021-01-04T14:00:21.310Z/spotifyapi.zip"
               },
               "Handler": "lambda.handler",
               "Runtime": "nodejs12.x",
@@ -213,7 +207,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/spotifyapi/dev/1609733333385-2021-01-04T04:08:53.385Z/spotifyapi.zip"
+                "S3Key": "serverless/spotifyapi/dev/1609768821310-2021-01-04T14:00:21.310Z/spotifyapi.zip"
               },
               "Handler": "lambda.hello",
               "Runtime": "nodejs12.x",
@@ -231,59 +225,24 @@
               "HelloLogGroup"
             ]
           },
-          "GoodbyeLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/spotifyapi/dev/1609733333385-2021-01-04T04:08:53.385Z/spotifyapi.zip"
-              },
-              "Handler": "lambda.hello",
-              "Runtime": "nodejs12.x",
-              "FunctionName": "spotifyapi-dev-goodbye",
-              "MemorySize": 512,
-              "Timeout": 10,
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "GoodbyeLogGroup"
-            ]
-          },
-          "SpotifyLambdaVersionsiwigsmUh6FvGbKUzncm5pTyy6By7QY88gjoS7L8bd8": {
+          "SpotifyLambdaVersionprx2cRreQBsXXk0T1y4gW9ZTofszcB2qO8N97KnsBho": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SpotifyLambdaFunction"
               },
-              "CodeSha256": "TjBArzEvIKVnDyRZb6hYgQWb4VWcgJxwlVultlLoAis="
+              "CodeSha256": "/I8gsY5oiPcViJBJpZhCevP0gD+ZACzxFnEoZKtvBCQ="
             }
           },
-          "HelloLambdaVersionEToqZEVH4Mw2lKpoN7WGqWrHaMYAPeabSbO8uxHI2E": {
+          "HelloLambdaVersionuMBZP006QTCAmDHXLQxB7NYwZOQz1eOazDFVIlefM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "TjBArzEvIKVnDyRZb6hYgQWb4VWcgJxwlVultlLoAis="
-            }
-          },
-          "GoodbyeLambdaVersionwaq2n7tB50LAO2qraHnLFP52oO2z22dZatSHsmQL8": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "GoodbyeLambdaFunction"
-              },
-              "CodeSha256": "TjBArzEvIKVnDyRZb6hYgQWb4VWcgJxwlVultlLoAis="
+              "CodeSha256": "/I8gsY5oiPcViJBJpZhCevP0gD+ZACzxFnEoZKtvBCQ="
             }
           },
           "ApiGatewayRestApi": {
@@ -335,21 +294,6 @@
                 ]
               },
               "PathPart": "hello",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayResourceGoodbye": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Fn::GetAtt": [
-                  "ApiGatewayRestApi",
-                  "RootResourceId"
-                ]
-              },
-              "PathPart": "goodbye",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -441,50 +385,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayMethodGoodbyeGet": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "HttpMethod": "GET",
-              "RequestParameters": {},
-              "ResourceId": {
-                "Ref": "ApiGatewayResourceGoodbye"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "ApiKeyRequired": false,
-              "AuthorizationType": "NONE",
-              "Integration": {
-                "IntegrationHttpMethod": "POST",
-                "Type": "AWS_PROXY",
-                "Uri": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":lambda:path/2015-03-31/functions/",
-                      {
-                        "Fn::GetAtt": [
-                          "GoodbyeLambdaFunction",
-                          "Arn"
-                        ]
-                      },
-                      "/invocations"
-                    ]
-                  ]
-                }
-              },
-              "MethodResponses": []
-            }
-          },
-          "ApiGatewayDeployment1609733329006": {
+          "ApiGatewayDeployment1609768816929": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -494,8 +395,7 @@
             },
             "DependsOn": [
               "ApiGatewayMethodSpotifyProxyVarAny",
-              "ApiGatewayMethodHelloGet",
-              "ApiGatewayMethodGoodbyeGet"
+              "ApiGatewayMethodHelloGet"
             ]
           },
           "SpotifyLambdaPermissionApiGateway": {
@@ -571,43 +471,6 @@
                 ]
               }
             }
-          },
-          "GoodbyeLambdaPermissionApiGateway": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "GoodbyeLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "ApiGatewayRestApi"
-                    },
-                    "/*/*"
-                  ]
-                ]
-              }
-            }
           }
         },
         "Outputs": {
@@ -619,19 +482,13 @@
           "SpotifyLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SpotifyLambdaVersionsiwigsmUh6FvGbKUzncm5pTyy6By7QY88gjoS7L8bd8"
+              "Ref": "SpotifyLambdaVersionprx2cRreQBsXXk0T1y4gW9ZTofszcB2qO8N97KnsBho"
             }
           },
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersionEToqZEVH4Mw2lKpoN7WGqWrHaMYAPeabSbO8uxHI2E"
-            }
-          },
-          "GoodbyeLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "GoodbyeLambdaVersionwaq2n7tB50LAO2qraHnLFP52oO2z22dZatSHsmQL8"
+              "Ref": "HelloLambdaVersionuMBZP006QTCAmDHXLQxB7NYwZOQz1eOazDFVIlefM"
             }
           },
           "ServiceEndpoint": {
@@ -749,9 +606,17 @@
         "handler": "lambda.handler",
         "events": [
           {
-            "http": "ANY spotify/{proxy+}",
+            "http": "ANY /spotify/{proxy+}",
+            "integration": "http-proxy",
             "cors": {
               "headers": "*"
+            },
+            "request": {
+              "parameters": {
+                "paths": {
+                  "proxy": true
+                }
+              }
             }
           }
         ],
@@ -761,7 +626,7 @@
         "timeout": 10,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "SpotifyLambdaVersionsiwigsmUh6FvGbKUzncm5pTyy6By7QY88gjoS7L8bd8"
+        "versionLogicalId": "SpotifyLambdaVersionprx2cRreQBsXXk0T1y4gW9ZTofszcB2qO8N97KnsBho"
       },
       "hello": {
         "handler": "lambda.hello",
@@ -781,27 +646,7 @@
         "timeout": 10,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersionEToqZEVH4Mw2lKpoN7WGqWrHaMYAPeabSbO8uxHI2E"
-      },
-      "goodbye": {
-        "handler": "lambda.hello",
-        "events": [
-          {
-            "http": "GET goodbye",
-            "path": "goodbye",
-            "method": "get",
-            "cors": {
-              "header": "*"
-            }
-          }
-        ],
-        "name": "spotifyapi-dev-goodbye",
-        "package": {},
-        "memory": 512,
-        "timeout": 10,
-        "runtime": "nodejs12.x",
-        "vpc": {},
-        "versionLogicalId": "GoodbyeLambdaVersionwaq2n7tB50LAO2qraHnLFP52oO2z22dZatSHsmQL8"
+        "versionLogicalId": "HelloLambdaVersionuMBZP006QTCAmDHXLQxB7NYwZOQz1eOazDFVIlefM"
       }
     },
     "configValidationMode": "warn",
@@ -822,7 +667,7 @@
     "artifact": "/Users/nhitran/workspace/sls-spotify-api/.serverless/spotifyapi.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/spotifyapi/dev/1609733333385-2021-01-04T04:08:53.385Z",
+    "artifactDirectoryName": "serverless/spotifyapi/dev/1609768821310-2021-01-04T14:00:21.310Z",
     "artifact": "spotifyapi.zip"
   }
 }

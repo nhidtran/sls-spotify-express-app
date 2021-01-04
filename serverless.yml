@@ -1,5 +1,4 @@
 service: spotifyapi
-
 provider:
   name: aws
   runtime: nodejs12.x
@@ -10,9 +9,14 @@ functions:
   spotify:
     handler: lambda.handler
     events:
-      - http: ANY spotify/{proxy+}
+      - http: ANY /spotify/{proxy+}
+        integration: http-proxy
         cors:
           headers: "*"
+        request:
+          parameters:
+            paths:
+              proxy: true
   hello:
     handler: lambda.hello
     events:
