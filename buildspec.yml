@@ -22,4 +22,18 @@ phases:
   build:
     commands:
       # deploying resources...
-      - serverless deploy
+      - echo serverless deploy....
+      - serverless deploy --stage dev
+      - echo Creating directory for deployment packages...
+      - mkdir artifacts
+      - echo Creating dev deployment package...
+      - mkdir artifacts/dev
+      - serverless package --package artifacts/dev --stage dev
+  post-build:
+    commands:
+      - serverless deploy --stage dev --package $CODEBUILD_SRC_DIR/artifacts/dev -v
+artifacts:
+  files:
+    - artifacts/**/*
+    - serverless.yml
+    # - deploy.sh
