@@ -22,7 +22,7 @@ phases:
   build:
     commands:
       # deploying resources...
-      - serverless deploy
+      - sls deploy
   post_build:
     commands:
       - echo Deploy complete....
